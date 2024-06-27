@@ -1,10 +1,10 @@
 [user]
-	name = synthpop123
-	email = <hide>
+    name = synthpop123
+    email = <hide>
 
 [core]
     pager = delta
-	excludesfile = .gitignore_global
+    excludesfile = .gitignore_global
 
 [interactive]
     diffFilter = delta --color-only
