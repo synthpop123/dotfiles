@@ -28,6 +28,7 @@ zinit light-mode for \
 zinit light zdharma-continuum/fast-syntax-highlighting
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
+zinit light atuinsh/atuin
 
 # Load completions
 autoload -Uz compinit && compinit
@@ -75,3 +76,11 @@ eval "$(thefuck --alias)"
 eval "$(fzf --zsh)"
 eval "$(zoxide init zsh)"
 eval "$(fnm env --use-on-cd)"
+
+# pnpm
+export PNPM_HOME="/Users/lkw123/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
