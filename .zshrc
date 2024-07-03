@@ -15,6 +15,7 @@ autoload -Uz _zinit
 export PATH="/Users/lkw123/Library/Python/3.9/bin:$HOME/.cargo/bin:$PATH"
 export BAT_THEME="Monokai Extended Origin"
 export STARSHIP_CONFIG="/Users/lkw123/.config/starship/starship.toml"
+export GPG_TTY=$(tty)
 
 # Load a few important annexes, without Turbo
 # (this is currently required for annexes)
