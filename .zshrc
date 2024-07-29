@@ -16,6 +16,7 @@ export PATH="/Users/lkw123/Library/Python/3.9/bin:$HOME/.cargo/bin:$PATH"
 export BAT_THEME="Monokai Extended Origin"
 export STARSHIP_CONFIG="/Users/lkw123/.config/starship/starship.toml"
 export GPG_TTY=$(tty)
+export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git" 2> /dev/null'
 
 # Load a few important annexes, without Turbo
 # (this is currently required for annexes)
@@ -70,6 +71,25 @@ alias tree="eza --tree --icons"
 alias upgrade="brew update && brew upgrade && brew cu --all --yes --cleanup && mas upgrade && brew cleanup"
 alias v="nvim"
 alias history="history 1"
+alias pf='fzf --preview='\''bat --color=always --style=header,grid --line-range :500 {}'\'' --bind shift-up: preview-page-up,shift-down:preview-page-down'
+
+ # Bat + Ripgrep + Fzf + Vim
+ rfv() (
+   RELOAD='reload:rg --column --color=always --smart-case {q} || :'
+   OPENER='if [[ $FZF_SELECT_COUNT -eq 0 ]]; then
+             vim {1} +{2}     # No selection. Open the current line in Vim.
+           else
+             vim +cw -q {+f}  # Build quickfix list for the selected items.
+           fi'
+   fzf --disabled --ansi --multi \
+       --bind "start:$RELOAD" --bind "change:$RELOAD" \
+       --bind "enter:become:$OPENER" \
+       --bind "ctrl-o:execute:$OPENER" \
+       --delimiter : \
+       --preview 'bat --style=header,grid --color=always --line-range :500 --highlight-line {2} {1}' \
+       --preview-window '~4,+{2}+4/3,<80(up)' \
+       --query "$*"
+ )
 
 # Shell integrations
 eval "$(starship init zsh)"
