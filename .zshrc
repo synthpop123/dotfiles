@@ -68,7 +68,7 @@ alias ll="eza --time-style=default --icons --git -l"
 alias la="eza --time-style=long-iso --icons --group --git --binary -la"
 alias cat="bat"
 alias tree="eza --tree --icons"
-alias upgrade="brew update && brew upgrade && brew cu --all --yes --cleanup && mas upgrade && brew cleanup"
+alias upgrade="brew update && brew upgrade && brew cu --all --yes --cleanup && mas upgrade && brew cleanup --prune=all"
 alias v="nvim"
 alias history="history 1"
 alias pf='fzf --preview='\''bat --color=always --style=header,grid --line-range :500 {}'\'' --bind shift-up: preview-page-up,shift-down:preview-page-down'
